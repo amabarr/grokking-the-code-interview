@@ -1,4 +1,7 @@
 /*
+
+Alternative hash table pair sum solution!
+
 Given an array of sorted numbers and a target_sum sum, find a pair in the array whose sum is equal to the given target_sum.
 */
 
@@ -10,23 +13,19 @@ Given an array of sorted numbers and a target_sum sum, find a pair in the array 
 // [2, 3, 4, 5, 6] --> 11 true
 
 const pairSum = (arr, target) => {
-	let p1 = 0,
-		p2 = arr.length - 1;
+	const nums = {};
 
-	while (p1 < p2) {
-		const currSum = arr[p1] + arr[p2];
+	for (let i = 0; i < arr.length; i++) {
+		const num = arr[i];
 
-		if (currSum === target) return [p1, p2];
-
-		if (currSum < target) {
-			p1++;
-		} else {
-			p2--;
+		if (target - num in nums) {
+			return [nums[target - num], i];
 		}
+
+		nums[num] = i;
 	}
 
 	return [-1, -1];
 };
 
-//Time Complexity : O(N) where N is the length of the array
-// Space: O(1), no extra space
+// O(N) time complexity, O(N) space
