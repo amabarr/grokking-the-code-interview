@@ -21,7 +21,7 @@ class Interval {
 }
 
 const merge = function (intervals) {
-	merged = [];
+	let merged = [];
 
 	intervals = intervals.sort((a, b) => a.start - b.start);
 	let start = intervals[0].start,
